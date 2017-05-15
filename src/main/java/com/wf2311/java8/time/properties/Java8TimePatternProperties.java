@@ -10,11 +10,12 @@ import java.time.format.DateTimeFormatter;
  * @time 2017/05/12 20:36.
  */
 @ConfigurationProperties(prefix = "java.time.pattern")
-@Component
 public class Java8TimePatternProperties {
-    protected String dateTime = "yyyy-MM-dd HH:mm:ss";
-    protected String date = "yyyy-MM-dd";
-    protected String time = "HH:mm:ss";
+    private String dateTime = "yyyy-MM-dd HH:mm:ss";
+    private String date = "yyyy-MM-dd";
+    private String yearMonth = "yyyy-MM";
+    private String monthDay = "MM-dd";
+    private String time = "HH:mm:ss";
 
     public String getDateTime() {
         return dateTime;
@@ -30,6 +31,22 @@ public class Java8TimePatternProperties {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getYearMonth() {
+        return yearMonth;
+    }
+
+    public void setYearMonth(String yearMonth) {
+        this.yearMonth = yearMonth;
+    }
+
+    public String getMonthDay() {
+        return monthDay;
+    }
+
+    public void setMonthDay(String monthDay) {
+        this.monthDay = monthDay;
     }
 
     public String getTime() {
@@ -48,6 +65,14 @@ public class Java8TimePatternProperties {
         return formatter(time);
     }
 
+    public DateTimeFormatter yearMonthFormatter(){
+        return formatter(yearMonth);
+    }
+
+    public DateTimeFormatter monthDayFormatter(){
+        return formatter(monthDay);
+    }
+
     public DateTimeFormatter dateFormatter() {
         return formatter(date);
     }
@@ -57,5 +82,16 @@ public class Java8TimePatternProperties {
             return null;
         }
         return DateTimeFormatter.ofPattern(pattern);
+    }
+
+    @Override
+    public String toString() {
+        return "Java8TimePatternProperties{" +
+                "dateTime='" + dateTime + '\'' +
+                ", date='" + date + '\'' +
+                ", yearMonth='" + yearMonth + '\'' +
+                ", monthDay='" + monthDay + '\'' +
+                ", time='" + time + '\'' +
+                '}';
     }
 }
