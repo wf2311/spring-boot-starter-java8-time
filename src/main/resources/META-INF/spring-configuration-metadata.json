@@ -1,0 +1,42 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.wf2311.java8.time.properties.Java8TimePatternProperties",
+      "name": "java.time.pattern",
+      "type": "com.wf2311.java8.time.properties.Java8TimePatternProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.wf2311.java8.time.properties.Java8TimePatternProperties",
+      "defaultValue": "yyyy-MM-dd",
+      "name": "java.time.pattern.date",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wf2311.java8.time.properties.Java8TimePatternProperties",
+      "defaultValue": "yyyy-MM-dd HH:mm:ss",
+      "name": "java.time.pattern.date-time",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wf2311.java8.time.properties.Java8TimePatternProperties",
+      "defaultValue": "MM-dd",
+      "name": "java.time.pattern.month-day",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wf2311.java8.time.properties.Java8TimePatternProperties",
+      "defaultValue": "HH:mm:ss",
+      "name": "java.time.pattern.time",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.wf2311.java8.time.properties.Java8TimePatternProperties",
+      "defaultValue": "yyyy-MM",
+      "name": "java.time.pattern.year-month",
+      "type": "java.lang.String"
+    }
+  ]
+}
