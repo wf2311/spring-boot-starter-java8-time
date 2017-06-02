@@ -16,6 +16,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.time.*;
 
 /**
+ *
+ * 参考
  * <a href="https://gist.github.com/abop/4be6d8b3538c18f720484a783811278c">订制默认的 jackson mapper, 自定义 java 8 time api 中对象的序列化格式</a>
  * <a href="https://www.petrikainulainen.net/programming/spring-framework/spring-from-the-trenches-using-type-converters-with-spring-mvc/"> Using Type Converters With Spring MVC</a>
  *
@@ -33,6 +35,9 @@ public class Java8TimeConfiguration extends WebMvcConfigurerAdapter {
         log.info("using patterns with properties='{}'", properties);
     }
 
+    /**
+     * 订制默认的 jackson mapper, 自定义 java 8 time api 中对象的序列化格式
+     */
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
         return jacksonObjectMapperBuilder -> jacksonObjectMapperBuilder.modules(
@@ -50,6 +55,9 @@ public class Java8TimeConfiguration extends WebMvcConfigurerAdapter {
         );
     }
 
+    /**
+     * 注册自定义的日期时间转换器
+     */
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new LocalDateConverter(properties.getDate()));
