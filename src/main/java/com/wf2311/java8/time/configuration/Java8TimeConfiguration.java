@@ -16,7 +16,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.time.*;
 
 /**
- *
  * 参考
  * <a href="https://gist.github.com/abop/4be6d8b3538c18f720484a783811278c">订制默认的 jackson mapper, 自定义 java 8 time api 中对象的序列化格式</a>
  * <a href="https://www.petrikainulainen.net/programming/spring-framework/spring-from-the-trenches-using-type-converters-with-spring-mvc/"> Using Type Converters With Spring MVC</a>
@@ -41,18 +40,24 @@ public class Java8TimeConfiguration extends WebMvcConfigurerAdapter {
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
         return jacksonObjectMapperBuilder -> jacksonObjectMapperBuilder.modules(
-                new JavaTimeModule()
-                        .addSerializer(LocalDate.class, new LocalDateSerializer(properties.dateFormatter()))
-                        .addSerializer(LocalTime.class, new LocalTimeSerializer(properties.timeFormatter()))
-                        .addSerializer(YearMonth.class, new YearMonthSerializer(properties.yearMonthFormatter()))
-                        .addSerializer(MonthDay.class, new MonthDaySerializer(properties.monthDayFormatter()))
-                        .addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(properties.dateTimeFormatter()))
-                        .addDeserializer(LocalDate.class, new LocalDateDeserializer(properties.dateFormatter()))
-                        .addDeserializer(LocalTime.class, new LocalTimeDeserializer(properties.timeFormatter()))
-                        .addDeserializer(YearMonth.class, new YearMonthDeserializer(properties.yearMonthFormatter()))
-                        .addDeserializer(MonthDay.class, new MonthDayDeserializer(properties.monthDayFormatter()))
-                        .addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(properties.dateTimeFormatter()))
+                javaTimeModule()
         );
+    }
+
+    @Bean(name = "javaTimeModule")
+    public JavaTimeModule javaTimeModule() {
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        javaTimeModule.addSerializer(LocalDate.class, new LocalDateSerializer(properties.dateFormatter()));
+        javaTimeModule.addSerializer(LocalTime.class, new LocalTimeSerializer(properties.timeFormatter()));
+        javaTimeModule.addSerializer(YearMonth.class, new YearMonthSerializer(properties.yearMonthFormatter()));
+        javaTimeModule.addSerializer(MonthDay.class, new MonthDaySerializer(properties.monthDayFormatter()));
+        javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(properties.dateTimeFormatter()));
+        javaTimeModule.addDeserializer(LocalDate.class, new LocalDateDeserializer(properties.dateFormatter()));
+        javaTimeModule.addDeserializer(LocalTime.class, new LocalTimeDeserializer(properties.timeFormatter()));
+        javaTimeModule.addDeserializer(YearMonth.class, new YearMonthDeserializer(properties.yearMonthFormatter()));
+        javaTimeModule.addDeserializer(MonthDay.class, new MonthDayDeserializer(properties.monthDayFormatter()));
+        javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(properties.dateTimeFormatter()));
+        return javaTimeModule;
     }
 
     /**
