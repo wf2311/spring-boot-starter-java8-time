@@ -1,8 +1,12 @@
 package com.wf2311.java8.time.properties;
 
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.datatype.jsr310.deser.*;
+import com.fasterxml.jackson.datatype.jsr310.ser.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -16,6 +20,22 @@ public class Java8TimePatternProperties {
     private String yearMonth = "yyyy-MM";
     private String monthDay = "MM-dd";
     private String time = "HH:mm:ss";
+
+
+    public JavaTimeModule javaTimeModule(){
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        javaTimeModule.addSerializer(LocalDate.class, new LocalDateSerializer(this.dateFormatter()));
+        javaTimeModule.addSerializer(LocalTime.class, new LocalTimeSerializer(this.timeFormatter()));
+        javaTimeModule.addSerializer(YearMonth.class, new YearMonthSerializer(this.yearMonthFormatter()));
+        javaTimeModule.addSerializer(MonthDay.class, new MonthDaySerializer(this.monthDayFormatter()));
+        javaTimeModule.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(this.dateTimeFormatter()));
+        javaTimeModule.addDeserializer(LocalDate.class, new LocalDateDeserializer(this.dateFormatter()));
+        javaTimeModule.addDeserializer(LocalTime.class, new LocalTimeDeserializer(this.timeFormatter()));
+        javaTimeModule.addDeserializer(YearMonth.class, new YearMonthDeserializer(this.yearMonthFormatter()));
+        javaTimeModule.addDeserializer(MonthDay.class, new MonthDayDeserializer(this.monthDayFormatter()));
+        javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(this.dateTimeFormatter()));
+        return javaTimeModule;
+    }
 
     public String getDateTime() {
         return dateTime;
