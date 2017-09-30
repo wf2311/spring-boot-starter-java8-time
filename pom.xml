@@ -5,7 +5,7 @@
 
     <groupId>com.wf2311</groupId>
     <artifactId>spring-boot-starter-java8-time</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.1.1</version>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -152,12 +152,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <!--<plugin>-->
-            <!--<groupId>org.sonarsource.scanner.maven</groupId>-->
-            <!--<artifactId>sonar-maven-plugin</artifactId>-->
-            <!--<version>3.2</version>-->
-            <!--</plugin>-->
 
             <!--GPG自动签名的插件-->
             <plugin>

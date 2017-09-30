@@ -1,12 +1,7 @@
 package com.wf2311.java8.time.properties;
 
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.datatype.jsr310.deser.*;
-import com.fasterxml.jackson.datatype.jsr310.ser.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
-import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 /**
