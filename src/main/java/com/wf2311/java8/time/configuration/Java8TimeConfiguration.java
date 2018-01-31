@@ -44,7 +44,7 @@ public class Java8TimeConfiguration extends WebMvcConfigurerAdapter {
         );
     }
 
-    @Bean(name = "javaTimeModule")
+    @Bean
     public JavaTimeModule javaTimeModule() {
         JavaTimeModule javaTimeModule = new JavaTimeModule();
         javaTimeModule.addSerializer(LocalDate.class, new LocalDateSerializer(properties.dateFormatter()));
